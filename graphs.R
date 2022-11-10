@@ -71,6 +71,7 @@ NeoverNbyUgenesvsnogenesN10000sd04data <- data.frame(
 
 NeoverNbyUtwodsdata <- merge(NeoverNbyUsd0025data, NeoverNbyUsd01data, by = c('U', 'NeoverN', 's'), all = TRUE)
 NeoverNbyUthreesdata <- merge(NeoverNbyUtwodsdata, NeoverNbyUsd04data, by = c('U', 'NeoverN', 's'), all = TRUE)
+NeoverNbyUwithoutsd01data <- merge(NeoverNbyUsd0025data, NeoverNbyUsd04data, by = c('U', 'NeoverN', 's'), all = TRUE)
 
 #Following code performs least-square analysis to fit the relationship between Ne/N and U
 #Lines with 'noC' fit directly to a function of the form e^-kU
@@ -125,23 +126,23 @@ NeoverNbyUgenesvsnogenesN2000sd01graph <- ggplot(data = NeoverNbyUgenesvsnogenes
   geom_point() +
   scale_x_log10(breaks = c(0.01, 0.1, 1.0, 10.0), labels = c("0.01", "0.1", "1", "10")) +
   scale_y_continuous(limits = c(0.0, 1.1)) +
-  stat_function(fun = function (x) (exp(-x/92)), aes(color = 'black')) +
+  stat_function(fun = function (x) (exp(-x/46)*exp(-8*0.005*x*(91/92))), aes(color = 'black')) +
   scale_color_manual(name = "", labels = c("no genes", "genes", "equation"), values = c('blue', 'red', 'black')) +
   xlab("Genome-wide deleterious mutation rate") +
   ylab("Ne/N") +
-  theme(text = element_text(size=22), axis.text = element_text(size = 16), panel.background = element_rect(fill = "white"),
+  theme(text = element_text(size=17), axis.text = element_text(size = 13.5), panel.background = element_rect(fill = "white"),
         panel.grid.major = element_line(colour = "light gray"),
-        panel.border = element_rect(fill = NA), legend.position = c(0.81, 0.17), legend.text = element_text(size = 17), legend.title = element_blank(), legend.key.height = unit(0.6, 'cm'))
+        panel.border = element_rect(fill = NA), legend.position = c(0.81, 0.17), legend.text = element_text(size = 18), legend.title = element_blank(), legend.key.height = unit(0.6, 'cm'))
 
 NeoverNbyUgenesvsnogenesN5000sd01graph <- ggplot(data = NeoverNbyUgenesvsnogenesN5000sd01data, mapping = aes(y = NeoverN, x = U, color = as.factor(genes))) +
   geom_point() +
   scale_x_log10(breaks = c(0.01, 0.1, 1.0, 10.0), labels = c("0.01", "0.1", "1", "10")) +
   scale_y_continuous(limits = c(0.0, 1.1)) +
-  stat_function(fun = function (x) (exp(-x/92)), aes(color = 'black')) +
+  stat_function(fun = function (x) (exp(-x/46)*exp(-8*0.005*x*(91/92))), aes(color = 'black')) +
   scale_color_manual(name = "", labels = c("no genes", "genes", "equation"), values = c('blue', 'red', 'black')) +
   xlab("Genome-wide deleterious mutation rate") +
   ylab("Ne/N") +
-  theme(text = element_text(size=22), axis.text = element_text(size = 16), panel.background = element_rect(fill = "white"),
+  theme(text = element_text(size=17), axis.text = element_text(size = 13.5), panel.background = element_rect(fill = "white"),
         panel.grid.major = element_line(colour = "light gray"),
         panel.border = element_rect(fill = NA), legend.position = "none")
 
@@ -149,7 +150,7 @@ NeoverNbyUgenesvsnogenesN10000sd01graphforstackedplot <- ggplot(data = NeoverNby
   geom_point() +
   scale_x_log10(breaks = c(0.01, 0.1, 1.0, 10.0), labels = c("0.01", "0.1", "1", "10")) +
   scale_y_continuous(limits = c(0.0, 1.1)) +
-  stat_function(fun = function (x) (exp(-x/92)), aes(color = 'black')) +
+  stat_function(fun = function (x) (exp(-x/46)*exp(-8*0.005*x*(91/92))), aes(color = 'black')) +
   scale_color_manual(name = "", labels = c("no genes", "genes", "equation"), values = c('blue', 'red', 'black')) +
   xlab("Genome-wide deleterious mutation rate") +
   ylab("Ne/N") +
@@ -159,11 +160,11 @@ NeoverNbyUgenesvsnogenesN10000sd01graph <- ggplot(data = NeoverNbyUgenesvsnogene
   geom_point() +
   scale_x_log10(breaks = c(0.01, 0.1, 1.0, 10.0), labels = c("0.01", "0.1", "1", "10")) +
   scale_y_continuous(limits = c(0.0, 1.1)) +
-  stat_function(fun = function (x) (exp(-x/92)), aes(color = 'black')) +
+  stat_function(fun = function (x) (exp(-x/46)*exp(-8*0.005*x*(91/92))), aes(color = 'black')) +
   scale_color_manual(name = "", labels = c("no genes", "genes", "equation"), values = c('blue', 'red', 'black')) +
   xlab("Genome-wide deleterious mutation rate") +
   ylab("Ne/N") +
-  theme(text = element_text(size=22), axis.text = element_text(size = 16), panel.background = element_rect(fill = "white"),
+  theme(text = element_text(size=17), axis.text = element_text(size = 13.5), panel.background = element_rect(fill = "white"),
         panel.grid.major = element_line(colour = "light gray"),
         panel.border = element_rect(fill = NA), legend.position = "none")
 
@@ -171,11 +172,11 @@ NeoverNbyUgenesvsnogenesN10000sd0025graph <- ggplot(data = NeoverNbyUgenesvsnoge
   geom_point() +
   scale_x_log10(breaks = c(0.01, 0.1, 1.0, 10.0), labels = c("0.01", "0.1", "1", "10")) +
   scale_y_continuous(limits = c(0.0, 1.1)) +
-  stat_function(fun = function (x) (exp(-x/92)), aes(color = 'black')) +
+  stat_function(fun = function (x) (exp(-x/46)*exp(-8*0.00125*x*(91/92))), aes(color = 'black')) +
   scale_color_manual(name = "", labels = c("no genes", "genes", "equation"), values = c('blue', 'red', 'black')) +
   xlab("Genome-wide deleterious mutation rate") +
   ylab("Ne/N") +
-  theme(text = element_text(size=22), axis.text = element_text(size = 16), panel.background = element_rect(fill = "white"),
+  theme(text = element_text(size=17), axis.text = element_text(size = 13.5), panel.background = element_rect(fill = "white"),
         panel.grid.major = element_line(colour = "light gray"),
         panel.border = element_rect(fill = NA), legend.position = "none")
 
@@ -183,11 +184,11 @@ NeoverNbyUgenesvsnogenesN10000sd04graph <- ggplot(data = NeoverNbyUgenesvsnogene
   geom_point() +
   scale_x_log10(breaks = c(0.01, 0.1, 1.0, 10.0), labels = c("0.01", "0.1", "1", "10")) +
   scale_y_continuous(limits = c(0.0, 1.1)) +
-  stat_function(fun = function (x) (exp(-x/92)), aes(color = 'black')) +
+  stat_function(fun = function (x) (exp(-x/46)*exp(-8*0.02*x*(91/92))), aes(color = 'black')) +
   scale_color_manual(name = "", labels = c("no genes", "genes", "equation"), values = c('blue', 'red', 'black')) +
   xlab("Genome-wide deleterious mutation rate") +
   ylab("Ne/N") +
-  theme(text = element_text(size=22), axis.text = element_text(size = 16), panel.background = element_rect(fill = "white"), panel.grid.major = element_line(colour = "light gray"), panel.border = element_rect(fill = NA), legend.position = "none")
+  theme(text = element_text(size=17), axis.text = element_text(size = 13.5), panel.background = element_rect(fill = "white"), panel.grid.major = element_line(colour = "light gray"), panel.border = element_rect(fill = NA), legend.position = "none")
 
 noblockswithDFENeoverNbyUgraph <- ggplot(data = noblocksUvsNedata, mapping = aes(y = NeoverN, x = U)) +
   geom_point() +
@@ -201,37 +202,94 @@ noblockswithDFENeoverNbyUgraph <- ggplot(data = noblocksUvsNedata, mapping = aes
   ylab("Ne/N") +
   theme(panel.background = element_rect(fill = "white", colour = "grey50"), legend.position = c(0.5, 0.2))
 
-noblocksnoDFENeoverNbyUgraph <- ggplot(data = NeoverNbyUthreesdata, mapping = aes(y = NeoverN, x = U, color = as.factor(s))) +
+noblocksnoDFENeoverNbyUgraph <- ggplot(data = NeoverNbyUwithoutsd01data, mapping = aes(y = NeoverN, x = U, color = as.factor(s))) +
   geom_point() +
   scale_x_log10(breaks = c(0.01, 0.1, 1.0, 10.0), labels = c("0.01", "0.1", "1", "10")) +
   scale_y_continuous(limits = c(0.0, 1.1)) +
   stat_function(fun = function (x) (exp(-x/92)), aes(color = 'black')) +
-  scale_color_manual(name = "", labels = c("Sd = -0.01", "Sd = -0.0025", "Sd = -0.04", "Theoretical expectation"), values = c('blue', 'green', 'purple', 'black')) +
+  stat_function(fun = function (x) (exp(-x/46)*exp(-8*x*0.02*(91/92))), aes(color = 'orange')) +
+  stat_function(fun = function (x) (exp(-x/46)*exp(-8*x*0.00125*(91/92))), aes(color = 'yellow')) +
+  scale_color_manual(name = "", labels = c("s = -0.0025", "s = -0.04", "linked only", "joint model, s = -0.04", "joint model, s = -0.0025"), values = c('green', 'blue', 'black', 'blue', 'green')) +
   xlab("Genome-wide deleterious mutation rate") +
   ylab("Ne/N") +
-  theme(text = element_text(size=20), axis.text = element_text(size = 18), panel.background = element_rect(fill = "white", colour = "grey50"), legend.position = c(0.43, 0.3), legend.text = element_text(size = 17))
+  theme(text = element_text(size=20), axis.text = element_text(size = 18), panel.background = element_rect(fill = "white", colour = "grey50"), legend.text = element_text(size = 17))
 
-NeoverNbyUthreeNsnoDFEnoblocksgraph <- ggplot(data = NeoverNbyUthreeNdata, mapping = aes(y = NeoverN, x = U, color = as.factor(N))) +
-  geom_point() +
+NeoverNbyUpanelBtwosdgraph <- ggplot(data = NeoverNbyUwithoutsd01data, mapping = aes(y = NeoverN, x = U, color = as.factor(s))) +
+  geom_point(show.legend = FALSE) +
   scale_x_log10(breaks = c(0.01, 0.1, 1.0, 10.0), labels = c("0.01", "0.1", "1", "10")) +
   scale_y_continuous(limits = c(0.0, 1.1)) +
-  stat_function(fun = function (x) (exp(-x/92)), aes(color = "black")) +
+  stat_function(fun = function (x) (exp(-x/92)), aes(color = 'black'), size = 0.8, show.legend = FALSE) +
+  stat_function(fun = function (x) (exp(-x/46)*exp(-8*x*0.02*(91/92))), aes(color = 'orange'), size = 0.8, show.legend = FALSE) +
+  stat_function(fun = function (x) (exp(-x/46)*exp(-8*x*0.00125*(91/92))), aes(color = 'yellow'), size = 0.8, show.legend = FALSE) +
+  scale_color_manual(name = "", labels = c("s = -0.0025", "s = -0.04", "linked only", "joint model, s = -0.04", "joint model, s = -0.0025"), values = c('green', 'blue', 'black', 'blue', 'green')) +
   xlab("Genome-wide deleterious mutation rate") +
   ylab("Ne/N") +
-  scale_color_manual(name = "", labels = c('N = 10000', 'N = 2000', 'N = 5000', 'Theoretical expectation'), values = c('green', 'purple', 'blue', 'black')) +
-  theme(text = element_text(size=20), axis.text = element_text(size = 18), panel.background = element_rect(fill = "white", colour = "grey50"), legend.position = c(0.43, 0.3), legend.text = element_text(size = 17))
+  theme(text = element_text(size=16), axis.text = element_text(size = 18), panel.background = element_rect(fill = "white", colour = "grey50"), legend.text = element_text(size = 12))
+
+
+a <- exp(-x/92)
+b <- exp(-8*0.005*x)
+c <- exp(-x/46)*exp(-8*0.005*x*(22/23))
+
+NeoverNbyUthreeNsnoDFEnoblocksgraph <- ggplot(data = NeoverNbyUthreeNdata, mapping = aes(y = NeoverN, x = U, shape = as.factor(N))) +
+  geom_point() +
+  #geom_line(aes(y = exp(-U/92), linetype = "solid")) +
+  #geom_line(aes(y = (exp(-8*0.005*U)), linetype = "dashed")) +
+  #geom_line(aes(y = (exp(-U/46)*exp(-8*0.005*U*(22/23))), linetype = "dashdot")) +
+  scale_x_log10(breaks = c(0.01, 0.1, 1.0, 10.0), labels = c("0.01", "0.1", "1", "10")) +
+  scale_y_continuous(limits = c(0.0, 1.1)) +
+  stat_function(fun = function (x) (exp(-x/92)), aes(linetype = "linked only")) +
+  stat_function(fun = function (x) (exp(-8*0.005*x)), aes(linetype = "unlinked only")) +
+  stat_function(fun = function (x) (exp(-x/46)*exp(-8*0.005*x*(91/92))), aes(linetype = "both")) +
+  xlab("Genome-wide deleterious mutation rate") +
+  ylab("Ne/N") +
+  scale_shape_manual(name = "Population size", labels = c('2000', '5000', '10000'), values = c(0, 1, 2)) +
+  scale_linetype_manual(name = "Theoretical expectation", values = c(4, 1, 2)) +
+  theme(text = element_text(size=16), axis.text = element_text(size = 18), panel.background = element_rect(fill = "white", colour = "grey50"), legend.text = element_text(size = 12))
+
+NeoverNbyUthreeNspanelAnolegendgraph <- ggplot(data = NeoverNbyUthreeNdata, mapping = aes(y = NeoverN, x = U, shape = as.factor(N))) +
+  geom_point(show.legend = FALSE) +
+  #geom_line(aes(y = exp(-U/92), linetype = "solid")) +
+  #geom_line(aes(y = (exp(-8*0.005*U)), linetype = "dashed")) +
+  #geom_line(aes(y = (exp(-U/46)*exp(-8*0.005*U*(22/23))), linetype = "dashdot")) +
+  scale_x_log10(breaks = c(0.01, 0.1, 1.0, 10.0), labels = c("0.01", "0.1", "1", "10")) +
+  scale_y_continuous(limits = c(0.0, 1.1)) +
+  stat_function(fun = function (x) (exp(-x/92)), aes(linetype = "linked only"), show.legend = FALSE, size = 0.8) +
+  stat_function(fun = function (x) (exp(-8*0.005*x)), aes(linetype = "unlinked only"), show.legend = FALSE, size = 0.8) +
+  stat_function(fun = function (x) (exp(-x/46)*exp(-8*0.005*x*(91/92))), aes(linetype = "both"), show.legend = FALSE, size = 0.8) +
+  xlab("Genome-wide deleterious mutation rate") +
+  ylab("Ne/N") +
+  scale_shape_manual(name = "Population size", labels = c('2000', '5000', '10000'), values = c(0, 1, 2)) +
+  scale_linetype_manual(name = "Theoretical expectation", values = c(4, 1, 2)) +
+  theme(text = element_text(size=16), axis.text = element_text(size = 18), panel.background = element_rect(fill = "white", colour = "grey50"), legend.text = element_text(size = 12))
+
 
 NeoverNbyUfullDFEvsnoDFEgraph <- ggplot(data = NeoverNbyUfullDFEvsnoDFEdata, mapping = aes(y = NeoverN, x = U, color = as.factor(DFE))) +
   geom_point() +
   scale_x_log10(breaks = c(0.01, 0.1, 1.0, 10.0), labels = c("0.01", "0.1", "1", "10")) +
   scale_y_continuous(limits = c(0.0, 1.1)) +
-  stat_function(fun = function (x) (exp(-x/92)), aes(color = "black")) +
+  stat_function(fun = function (x) (exp(-x/46)*exp(-8*0.005*x*(91/92))), aes(color = "black")) +
   xlab("Genome-wide deleterious mutation rate") +
   ylab("Ne/N") +
-  scale_color_manual(name = "", labels = c("Full DFE (Kim et al. 2017)", "Constant s = -0.01", "Theoretical expectation"), values = c('orange', 'purple', 'black')) +
+  scale_linetype_manual(labels = c('1', '2', '3')) +
+  scale_color_manual(name = "", labels = c("Full DFE (Kim et al. 2017)", "Constant s = -0.01", "Linked + unlinked"), values = c('orange', 'purple', 'black')) +
   theme(text = element_text(size=20), axis.text = element_text(size = 18), 
-        panel.background = element_rect(fill = "white", color = "grey50"), 
-        legend.position = c(0.48, 0.3), legend.text = element_text(size = 17), legend.key.height = unit(0.7, 'cm'))
+        panel.background = element_rect(fill = "white", color = "grey50"),
+        legend.text = element_text(size = 17), legend.key.height = unit(0.7, 'cm'))
+
+NeoverNbyUpanelCDFEvsnoDFEgraph <- ggplot(data = NeoverNbyUfullDFEvsnoDFEdata, mapping = aes(y = NeoverN, x = U, color = as.factor(DFE))) +
+  geom_point(show.legend = FALSE) +
+  scale_x_log10(breaks = c(0.01, 0.1, 1.0, 10.0), labels = c("0.01", "0.1", "1", "10")) +
+  scale_y_continuous(limits = c(0.0, 1.1)) +
+  stat_function(fun = function (x) (exp(-x/46)*exp(-8*0.005*x*(91/92))), aes(color = "purple"), show.legend = FALSE, linetype = 4, size = 0.8, color = 'purple') +
+  xlab("Genome-wide deleterious mutation rate") +
+  ylab("Ne/N") +
+  scale_linetype_manual(labels = c('1', '2', '3')) +
+  scale_color_manual(name = "", labels = c("Full DFE (Kim et al. 2017)", "Constant s = -0.01", "Linked + unlinked"), values = c('orange', 'purple', 'black')) +
+  theme(text = element_text(size=16), axis.text = element_text(size = 18), 
+        panel.background = element_rect(fill = "white", color = "grey50"),
+        legend.text = element_text(size = 12), legend.key.height = unit(0.7, 'cm'))
+
 
 NeoverNgraph
 
@@ -263,6 +321,12 @@ NeoverNbyUfullDFEvsnoDFEgraph
 
 NeoverNbyUthreeNsnoDFEnoblocksgraph
 
+NeoverNbyUthreeNspanelAnolegendgraph
+
+NeoverNbyUpanelBtwosdgraph
+
+NeoverNbyUpanelCDFEvsnoDFEgraph
+
 ggarrange(NeoverNbyUgenesvsnogenesN2000sd01graph +
             theme(axis.text.x = element_blank(), 
                   axis.ticks.x = element_blank(), 
@@ -272,7 +336,7 @@ ggarrange(NeoverNbyUgenesvsnogenesN2000sd01graph +
                   panel.background = element_rect(fill = "white"),
                   panel.grid.major = element_line(colour = "light gray"),
                   panel.border = element_rect(fill = NA),
-                  legend.position = c(0.72, 0.25),
+                  legend.position = c(0.25, 0.45),
                   legend.background = element_blank()) +
             xlab("Genome-wide deleterious mutation rate") +
             ylab("Ne/N"), 
